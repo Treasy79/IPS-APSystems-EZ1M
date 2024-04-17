@@ -136,7 +136,7 @@ declare(strict_types=1);
 
 			foreach ($ar['data'] as $key => $ls_data){
 				$this->SendDebug("KEY", $$key, 0);
-				$this->SetValue($prefix.$key , $ls_data[0]);	
+				$this->SetValue($prefix.$key , $ls_data);	
 			}
 		}
 
