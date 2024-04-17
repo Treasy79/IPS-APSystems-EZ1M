@@ -115,7 +115,7 @@ declare(strict_types=1);
 
 		private function derive_prefix(string $request)
 		{
-			switch ($reqest){
+			switch ($request){
 				case "getDeviceInfo":
 					return 'di_';
 				case "getOnOff":
