@@ -90,6 +90,7 @@ declare(strict_types=1);
 			$this->SendDebug('Call_API', $result,0);
 			if ($HttpCode =curl_getinfo($curl, CURLINFO_HTTP_CODE)){
 				$this->SetStatus(201);
+				break;
 			}
             curl_close($curl);
 
