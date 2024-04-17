@@ -1,0 +1,12 @@
+{
+    "id": "{83B95FBE-13EF-B7A8-97D7-E2047BAF992C}",
+    "name": "APSystems EZ1M",
+    "author": "Philipp Hirzel",
+    "url": "",
+    "compatibility": {
+        "version": "7.1"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 20240416
+}

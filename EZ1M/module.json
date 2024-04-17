@@ -1,0 +1,12 @@
+{
+    "id": "{41E59628-E1D8-CCD8-26D9-924B6C769266}",
+    "name": "EZ1M",
+    "type": 3,
+    "vendor": "APSystems",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "APSEZ",
+    "url": ""
+}
