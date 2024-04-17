@@ -83,7 +83,7 @@ declare(strict_types=1);
 			$curl = curl_init();
 
 			$url = 'http://'.$this->ReadPropertyString('IP').':8050/'.$request.$parameter;
-
+			$this->SendDebug("URL", $url, 0);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
