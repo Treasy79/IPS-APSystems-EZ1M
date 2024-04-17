@@ -84,16 +84,19 @@ declare(strict_types=1);
 
 			$url = 'http://'.$this->ReadPropertyString('IP').':8050/'.$request.$parameter;
 			$this->SendDebug("URL", $url, 0);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept:application/json','Content-Type:application/json']);
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 
 			$result = curl_exec($curl);   
 			$this->SendDebug('Call_API', $result,0);
-			if ($HttpCode =curl_getinfo($curl, CURLINFO_HTTP_CODE)){
-				$this->SetStatus(201);
-				return;
-			}
+			//if ($HttpCode =curl_getinfo($curl, CURLINFO_HTTP_CODE)){
+			//	$this->SetStatus(201);
+			//	return;
+			//}
             curl_close($curl);
 
 			$ar = json_decode($result, true); 
