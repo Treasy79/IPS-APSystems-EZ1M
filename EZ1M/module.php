@@ -97,7 +97,7 @@ declare(strict_types=1);
             curl_close($curl);
 
 			$ar = json_decode($result, true); 
-
+			$this->SendDebug('Message', $ar['message'],0);
 			if ($ar['message'] == 'SUCCESS'){
 				$prefix = $this->derive_prefix($request);
 				$this->SendDebug("PREFIX", $prefix, 0);
