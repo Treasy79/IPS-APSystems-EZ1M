@@ -138,7 +138,7 @@ declare(strict_types=1);
 			$ar = json_decode($result, true); 
 
 			foreach ($ar['data'] as $key => $ls_data){
-				$this->SendDebug("KEY", $$key, 0);
+				$this->SendDebug("KEY", $key, 0);
 				$this->SetValue($prefix.$key , $ls_data);	
 			}
 		}
