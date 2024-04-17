@@ -122,7 +122,7 @@ declare(strict_types=1);
 				case "setMaxPower?p=":
 					return 'po_';	
 				case "getAlarm":
-					return 'ai_'	
+					return 'ai_';	
 			}
 		}
 
