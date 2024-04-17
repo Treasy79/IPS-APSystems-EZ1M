@@ -30,7 +30,9 @@ declare(strict_types=1);
 
 			$this->register_variables();
 			$this->setstatus(102);
-			$this->get_device_info();
+			if ($this->ReadPropertyString('IP') != ''){
+				$this->get_device_info();
+			}
 		}
 
 		public function get_device_info()
