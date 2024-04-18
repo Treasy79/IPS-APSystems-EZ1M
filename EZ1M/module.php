@@ -156,9 +156,11 @@ declare(strict_types=1);
 					$tet = $tet + $ls_data;
 				}
 			}
-			$this->SetValue('od_pt' , $pt);
-			$this->SetValue('od_et' , $et);
-			$this->SetValue('od_tet' , $tet);
+			if ($prefix == 'od_'){
+				$this->SetValue('od_pt' , $pt);
+				$this->SetValue('od_et' , $et);
+				$this->SetValue('od_tet' , $tet);
+			}
 		}
 		private function RegisterProfiles()
 		{
