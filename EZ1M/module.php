@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 			$this->RegisterPropertyString("IP", '');
 			$this->RegisterPropertyInteger("Update_Output", '5');
+			$this->RegisterPropertyInteger("Update_Output_Inactive", '60');
 			$this->RegisterPropertyInteger("Update_Info", '10');
 
 			//--- Register Timer
@@ -33,6 +34,10 @@ declare(strict_types=1);
 			$this->setstatus(102);
 			if ($this->ReadPropertyString('IP') != ''){
 				$this->get_device_info();
+			}
+			else{
+				$this->SetTimerInterval("UpdateTimerOutputData", 0);
+				$this->SetTimerInterval("UpdateTimerInfo", 0);
 			}
 		}
 
@@ -94,6 +99,13 @@ declare(strict_types=1);
 
 			$result = curl_exec($curl);   
 			$this->SendDebug('Call_API', $result,0);
+			if ($result == false){
+				$this->SendDebug('Connection Status', 'IP Not reachabele',0);
+				$this->SetTimerInterval("UpdateTimerOutputData", ($this->ReadPropertyInteger('Update_Output_Inactive')* 1000));
+				return;
+			}
+			$this->SetTimerInterval("UpdateTimerOutputData", ($this->ReadPropertyInteger('Update_Output')* 1000));
+			$this->SetTimerInterval("UpdateTimerInfo", ($this->ReadPropertyInteger('Update_Info')* 1000 * 60));
 			//if ($HttpCode =curl_getinfo($curl, CURLINFO_HTTP_CODE)){
 			//	$this->SetStatus(201);
 			//	return;
