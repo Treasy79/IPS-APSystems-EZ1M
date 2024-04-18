@@ -28,6 +28,7 @@ declare(strict_types=1);
 			//Never delete this line!
 			parent::ApplyChanges();
 
+			$this->RegisterProfiles();
 			$this->register_variables();
 			$this->setstatus(102);
 			if ($this->ReadPropertyString('IP') != ''){
