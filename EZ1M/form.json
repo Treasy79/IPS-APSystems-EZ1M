@@ -8,6 +8,9 @@
              "type": "NumberSpinner", "name": "Update_Output", "caption": "Update Time Output Data" , "suffix": "Sekunden"
         },
         {
+            "type": "NumberSpinner", "name": "Update_Output_Inactive", "caption": "Update Time Output Data Inactive" , "suffix": "Sekunden"
+       },
+        {
             "type": "NumberSpinner", "name": "Update_Info", "caption": "Update Time Info Data" , "suffix": "Minuten"
        }
     ],
