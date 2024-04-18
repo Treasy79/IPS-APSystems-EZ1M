@@ -178,10 +178,10 @@ declare(strict_types=1);
 			$this->RegisterVariableFloat("od_e1", $this->Translate('Energy Since Startup Channel 1'), '~Electricity', 15);
 			$this->RegisterVariableFloat("od_te1", $this->Translate('Energy Lifetime Channel 1'), '~Electricity', 18);
 			$this->RegisterVariableInteger("od_p2", $this->Translate('Power Channel 2'), 'APSEZ.watt', 13);
-			$this->RegisterVariableFloat("od_e2", $this->Translate('Energy Since Startup Channel 2'), '~Electricity', 19);
-			$this->RegisterVariableFloat("od_te2", $this->Translate('Energy Lifetime Channel 2'), '~Electricity', 0);
+			$this->RegisterVariableFloat("od_e2", $this->Translate('Energy Since Startup Channel 2'), '~Electricity', 16);
+			$this->RegisterVariableFloat("od_te2", $this->Translate('Energy Lifetime Channel 2'), '~Electricity', 19);
 			// Output Data (Additional calculated)
-			$this->RegisterVariableFloat("od_pt", $this->Translate('Power Total'), 'APSEZ.watt', 11);
+			$this->RegisterVariableInteger("od_pt", $this->Translate('Power Total'), 'APSEZ.watt', 11);
 			$this->RegisterVariableFloat("od_et", $this->Translate('Energy Since Startup Total'), '~Electricity', 14);
 			$this->RegisterVariableFloat("od_tet", $this->Translate('Energy Lifetime Total'), '~Electricity', 17);
 
