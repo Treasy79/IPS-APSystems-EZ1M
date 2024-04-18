@@ -142,38 +142,46 @@ declare(strict_types=1);
 				$this->SetValue($prefix.$key , $ls_data);	
 			}
 		}
+		private function RegisterProfiles()
+		{
+			if (!IPS_VariableProfileExists('APSEZ.watt')) {
+				IPS_CreateVariableProfile('APSEZ.watt', 1);
+				IPS_SetVariableProfileIcon('APSEZ.watt', 'Electricity');
+				IPS_SetVariableProfileText("APSEZ.watt", "", " W");
+			}
+		}
 
 		private function register_variables()
 		{
 			// Output Data
-			$this->RegisterVariableFloat("od_p1", $this->Translate('Power Channel 1'), '', 0);
-			$this->RegisterVariableFloat("od_e1", $this->Translate('Energy Since Startup Channel 1'), '', 0);
-			$this->RegisterVariableFloat("od_te1", $this->Translate('Energy Lifetime Channel 1'), '', 0);
-			$this->RegisterVariableFloat("od_p2", $this->Translate('Power Channel 2'), '', 0);
-			$this->RegisterVariableFloat("od_e2", $this->Translate('Energy Since Startup Channel 2'), '', 0);
-			$this->RegisterVariableFloat("od_te2", $this->Translate('Energy Lifetime Channel 2'), '', 0);
+			$this->RegisterVariableInteger("od_p1", $this->Translate('Power Channel 1'), 'APSEZ.watt', 12);
+			$this->RegisterVariableFloat("od_e1", $this->Translate('Energy Since Startup Channel 1'), '~Electricity', 15);
+			$this->RegisterVariableFloat("od_te1", $this->Translate('Energy Lifetime Channel 1'), '~Electricity', 18);
+			$this->RegisterVariableInteger("od_p2", $this->Translate('Power Channel 2'), 'APSEZ.watt', 13);
+			$this->RegisterVariableFloat("od_e2", $this->Translate('Energy Since Startup Channel 2'), '~Electricity', 19);
+			$this->RegisterVariableFloat("od_te2", $this->Translate('Energy Lifetime Channel 2'), '~Electricity', 0);
 			// Output Data (Additional calculated)
-			$this->RegisterVariableFloat("od_pt", $this->Translate('Power Total'), '', 0);
-			$this->RegisterVariableFloat("od_et", $this->Translate('Energy Since Startup Total'), '', 0);
-			$this->RegisterVariableFloat("od_tet", $this->Translate('Energy Lifetime Total'), '', 0);
+			$this->RegisterVariableFloat("od_pt", $this->Translate('Power Total'), 'APSEZ.watt', 11);
+			$this->RegisterVariableFloat("od_et", $this->Translate('Energy Since Startup Total'), '~Electricity', 14);
+			$this->RegisterVariableFloat("od_tet", $this->Translate('Energy Lifetime Total'), '~Electricity', 17);
 
 			//Device Info
-			$this->RegisterVariableString("di_deviceId", $this->Translate('Device ID'), '', 0);
-			$this->RegisterVariableString("di_devVer", $this->Translate('Device Version'), '', 0);
-			$this->RegisterVariableString("di_ssid", $this->Translate('Connected SSID'), '', 0);
-			$this->RegisterVariableString("di_ipAddr", $this->Translate('Device IP Address'), '', 0);
-			$this->RegisterVariableString("di_minPower", $this->Translate('Minimum Power possible'), '', 0);
-			$this->RegisterVariableString("di_maxPower", $this->Translate('Maximum Power possible'), '', 0);
+			$this->RegisterVariableString("di_deviceId", $this->Translate('Device ID'), '', 1);
+			$this->RegisterVariableString("di_devVer", $this->Translate('Device Version'), '', 2);
+			$this->RegisterVariableString("di_ssid", $this->Translate('Connected SSID'), '', 3);
+			$this->RegisterVariableString("di_ipAddr", $this->Translate('Device IP Address'), '', 4);
+			$this->RegisterVariableInteger("di_minPower", $this->Translate('Minimum Power possible'), 'APSEZ.watt', 5);
+			$this->RegisterVariableInteger("di_maxPower", $this->Translate('Maximum Power possible'), 'APSEZ.watt', 6);
 
 			$this->RegisterVariableBoolean("di_status", $this->Translate('Status'), '', 0);
 
 			//Max Power Output
-			$this->RegisterVariableInteger("po_maxPower", $this->Translate('Maximum Output Power'), '', 0);
+			$this->RegisterVariableInteger("po_maxPower", $this->Translate('Maximum Output Power'), 'APSEZ.watt', 7);
 
 			//Alarm Information
-			$this->RegisterVariableBoolean("ai_og", $this->Translate('Off Grid'), '', 0);
-			$this->RegisterVariableBoolean("ai_isce1", $this->Translate('DC 1 Short Circuit'), '', 0);
-			$this->RegisterVariableBoolean("ai_isce2", $this->Translate('DC 2 Short Circuit'), '', 0);
-			$this->RegisterVariableBoolean("ai_oe", $this->Translate('Output Fault'), '', 0);
+			$this->RegisterVariableBoolean("ai_og", $this->Translate('Off Grid'), '~Alert', 50);
+			$this->RegisterVariableBoolean("ai_isce1", $this->Translate('DC 1 Short Circuit'), '~Alert', 52);
+			$this->RegisterVariableBoolean("ai_isce2", $this->Translate('DC 2 Short Circuit'), '~Alert', 53);
+			$this->RegisterVariableBoolean("ai_oe", $this->Translate('Output Fault'), '~Alert', 51);
 		}
 	}
