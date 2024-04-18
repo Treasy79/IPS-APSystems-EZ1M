@@ -147,13 +147,13 @@ declare(strict_types=1);
 				$this->SetValue($prefix.$key , $ls_data);	
 				// Total of CH1 & CH2
 				if ( $key == 'p1' or $key == 'p2' ){
-					$pt .= $ls_data;
+					$pt = $pt + $ls_data;
 				}
 				if ( $key == 'e1' or $key == 'e2' ){
-					$et .= $ls_data;
+					$et = $et + $ls_data;
 				}
 				if ( $key == 'te1' or $key == 'te2' ){
-					$tet .= $ls_data;
+					$tet = $tet + $ls_data;
 				}
 			}
 			$this->SetValue('od_pt' , $pt);
