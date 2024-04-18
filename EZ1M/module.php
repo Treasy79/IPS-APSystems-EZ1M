@@ -136,12 +136,29 @@ declare(strict_types=1);
 
 		private function process_return(string $result, string $prefix)
 		{	
+			$pt = 0;
+			$et = 0.00;
+			$tet = 0.00;
+
 			$ar = json_decode($result, true); 
 
 			foreach ($ar['data'] as $key => $ls_data){
 				$this->SendDebug("KEY", $key, 0);
 				$this->SetValue($prefix.$key , $ls_data);	
+				// Total of CH1 & CH2
+				if ( $key == 'p1' or $key == 'p2' ){
+					$pt .= $ls_data;
+				}
+				if ( $key == 'e1' or $key == 'e2' ){
+					$et .= $ls_data;
+				}
+				if ( $key == 'te1' or $key == 'te2' ){
+					$tet .= $ls_data;
+				}
 			}
+			$this->SetValue('od_pt' , $pt);
+			$this->SetValue('od_et' , $et);
+			$this->SetValue('od_tet' , $tet);
 		}
 		private function RegisterProfiles()
 		{
@@ -174,7 +191,7 @@ declare(strict_types=1);
 			$this->RegisterVariableInteger("di_minPower", $this->Translate('Minimum Power possible'), 'APSEZ.watt', 5);
 			$this->RegisterVariableInteger("di_maxPower", $this->Translate('Maximum Power possible'), 'APSEZ.watt', 6);
 
-			$this->RegisterVariableBoolean("di_status", $this->Translate('Status'), '', 0);
+			$this->RegisterVariableBoolean("di_status", $this->Translate('Production Lock'), '', 0);
 
 			//Max Power Output
 			$this->RegisterVariableInteger("po_maxPower", $this->Translate('Maximum Output Power'), 'APSEZ.watt', 7);
