@@ -34,6 +34,7 @@ declare(strict_types=1);
 			$this->setstatus(102);
 			if ($this->ReadPropertyString('IP') != ''){
 				$this->get_device_info();
+				$this->SetTimerInterval("UpdateTimerInfo", ($this->ReadPropertyInteger('Update_Info')* 1000 * 60));
 			}
 			else{
 				$this->SetTimerInterval("UpdateTimerOutputData", 0);
@@ -68,7 +69,13 @@ declare(strict_types=1);
 
 		public function set_on_off_status(bool $value)
 		{
-			$this->call_api('setOnOff?status=', $value);
+			if ($value){
+				$onoff = 1;	
+			}
+			else{
+				$onoff = 0;
+			}
+			$this->call_api('setOnOff?status=',$onoff);
 		}
 
 		public function set_max_power(int $value)
@@ -84,6 +91,17 @@ declare(strict_types=1);
 			$this->get_alarm_info();
 		}
 
+		public function RequestAction($Ident, $Value)
+		{
+			switch ($Ident){
+				case "po_maxPower":
+					$this->set_max_power($Value);
+					break;
+				case "di_status":
+					$this->set_on_off_status( $value);
+					break;	
+				}
+			}
 		private function call_api(string $request, string $parameter)
 		{
 			$curl = curl_init();
@@ -105,11 +123,7 @@ declare(strict_types=1);
 				return;
 			}
 			$this->SetTimerInterval("UpdateTimerOutputData", ($this->ReadPropertyInteger('Update_Output')* 1000));
-			$this->SetTimerInterval("UpdateTimerInfo", ($this->ReadPropertyInteger('Update_Info')* 1000 * 60));
-			//if ($HttpCode =curl_getinfo($curl, CURLINFO_HTTP_CODE)){
-			//	$this->SetStatus(201);
-			//	return;
-			//}
+						
             curl_close($curl);
 
 			$ar = json_decode($result, true); 
